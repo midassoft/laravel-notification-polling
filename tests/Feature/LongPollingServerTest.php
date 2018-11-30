@@ -22,6 +22,7 @@ class LongPollingServerTest extends TestCase
             {
                 return ['database'];
             }
+
             public function toArray()
             {
                 return ['message' => 'welcome'];
