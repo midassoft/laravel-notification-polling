@@ -17,8 +17,7 @@ class LongPollingServerTest extends TestCase
 
         $this->user = factory(User::class)->create();
 
-        NotificationFacade::send($this->user, new class extends Notification
-        {
+        NotificationFacade::send($this->user, new class extends Notification {
             public function via()
             {
                 return ['database'];
@@ -50,9 +49,7 @@ class LongPollingServerTest extends TestCase
         $this->withoutExceptionHandling();
 
         $response = $this->actingAs($this->user)
-            ->put('/read-notification', [
-                'id' => $this->notification->id
-            ]);
+            ->put('/read-notification', ['id' => $this->notification->id]);
 
         $response->assertStatus(204);
     }

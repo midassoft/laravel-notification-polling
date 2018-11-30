@@ -17,7 +17,7 @@ Route::get('notifications-poll', function () {
 
         Auth::user()->refresh();
     }
-});
+})->middleware('auth');
 
 Route::put('read-notification', function () {
     $updated = Auth::user()

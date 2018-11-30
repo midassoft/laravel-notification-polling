@@ -14,7 +14,6 @@ return [
 
     'max_attempts' => 10,
 
-
     /*
     |--------------------------------------------------------------------------
     | The Amount Of Time The Polling Should Sleep
