@@ -17,7 +17,7 @@ class LongPollingServerTest extends TestCase
 
         $this->user = factory(User::class)->create();
 
-        NotificationFacade::send($this->user, new class extends Notification {
+        NotificationFacade::send($this->user, new class() extends Notification {
             public function via()
             {
                 return ['database'];
