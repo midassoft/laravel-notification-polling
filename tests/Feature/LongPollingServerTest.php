@@ -9,6 +9,7 @@ use Tests\TestCase;
 class LongPollingServerTest extends TestCase
 {
     private $user;
+    private $notification;
 
     public function setUp()
     {
@@ -27,6 +28,8 @@ class LongPollingServerTest extends TestCase
                 return ['message' => 'welcome'];
             }
         });
+
+        $this->notification = $this->user->unreadNotifications()->first();
     }
 
     /** @test */
@@ -39,5 +42,18 @@ class LongPollingServerTest extends TestCase
             ->assertStatus(200)
             ->assertJsonCount(1)
             ->assertJson([0 => ['data' => ['message' => 'welcome']]]);
+    }
+
+    /** @test */
+    public function it_can_read_notification()
+    {
+        $this->withoutExceptionHandling();
+
+        $response = $this->actingAs($this->user)
+            ->put('/read-notification', [
+                'id' => $this->notification->id
+            ]);
+
+        $response->assertStatus(204);
     }
 }

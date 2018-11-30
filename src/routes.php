@@ -2,11 +2,10 @@
 
 Route::get('notifications-poll', function () {
     $attempts = 0;
-    $user = Auth::user();
 
     while (true) {
-        if ($user->unreadNotifications->count() > 0) {
-            return $user->unreadNotifications->toJson();
+        if (Auth::user()->unreadNotifications->count() > 0) {
+            return Auth::user()->unreadNotifications->toJson();
         }
 
         sleep(config('notification-polling.sleep_time'));
@@ -16,6 +15,16 @@ Route::get('notifications-poll', function () {
             return response()->json([]);
         }
 
-        $user->refresh();
+        Auth::user()->refresh();
     }
 });
+
+Route::put('read-notification', function () {
+    $updated = Auth::user()
+                    ->unreadNotifications()
+                    ->where('id', request('id'))
+                    ->first()
+                    ->markAsRead();
+
+    return response(null, 204);
+})->middleware('auth');
