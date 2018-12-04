@@ -1,5 +1,5 @@
 {
-    "name": "midassoft/laravel-long-polling-channel",
+    "name": "midassoft/laravel-notification-polling",
     "description": "A long polling server for receiving Laravel notifications",
     "license": "MIT",
     "authors": [
@@ -37,5 +37,12 @@
             "vendor/bin/phpcbf --standard=PSR2 tests",
             "vendor/bin/phpunit --no-logging"
         ]
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "LongPolling\\LongPollingServiceProvider"
+            ]
+        }
     }
 }
