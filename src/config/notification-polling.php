@@ -24,6 +24,18 @@ return [
     |
     */
 
-    'sleep_time' => 2,
+    'sleep_time' => 10,
+
+    /*
+    |--------------------------------------------------------------------------
+    | The Amount Of Time The Polling Should Sleep
+    |--------------------------------------------------------------------------
+    |
+    | Here you specify the time in seconds the poll should way between
+    | iterations.
+    |
+    */
+
+    'icon' => 'assets/img/logo.png',
 
 ];
