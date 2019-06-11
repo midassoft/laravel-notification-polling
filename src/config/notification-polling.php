@@ -24,18 +24,38 @@ return [
     |
     */
 
-    'sleep_time' => 10,
+    'sleep_time' => 2,
 
     /*
     |--------------------------------------------------------------------------
-    | The Amount Of Time The Polling Should Sleep
+    | The retry time.
     |--------------------------------------------------------------------------
     |
-    | Here you specify the time in seconds the poll should way between
-    | iterations.
+    | Retry time between each interaction with the notification server.
+    |
+    */
+
+    'retry_time' => 15,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Project logo.
+    |--------------------------------------------------------------------------
+    |
+    | This logo is used for notifications icon.
     |
     */
 
     'icon' => 'assets/img/logo.png',
+
+    /*
+    |--------------------------------------------------------------------------
+    | The host where the new notifications will be searched. If there is no
+    | subdomain the notifications will be searched in the main host.
+    |--------------------------------------------------------------------------
+    |
+    */
+
+    'host' => '',
 
 ];

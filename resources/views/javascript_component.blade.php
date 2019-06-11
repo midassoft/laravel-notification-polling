@@ -14,31 +14,37 @@
         }
     }
 
-    function getNewMessages(url) {
+    function getNewNotifications(url) {
 
         setTimeout(function(){
             $.get(url, function(data) {
-                data = JSON.parse(data);
 
-                if (data.length > 0) {
-                    data.forEach( function (element) {
-                        let logo = '{{config('notification-polling.icon')}}';
-                        spawnNotification(element.contenido, logo, element.titulo, true);
-                    });
+                if (data.cod) {
+                    if (notificationsPollingCallback && typeof notificationsPollingCallback === 'function') {
+                        // Locally function callback
+                        notificationsPollingCallback(data);
+                    }
                 }
 
-                getNewMessages(url);
+                {{--if (data.length > 0) {--}}
+                    {{--data.forEach( function (element) {--}}
+                        {{--let logo = '{{config('notification-polling.icon')}}';--}}
+                        {{--spawnNotification(element.contenido, logo, element.titulo, true);--}}
+                    {{--});--}}
+                {{--}--}}
+
+                getNewNotifications(url);
 
             }).fail(function() {
                 setTimeout(function(){
-                    getNewMessages(url);
-                }, 5000);
+                    getNewNotifications(url);
+                }, 10000);
             });
-        }, 5000);
+        }, {{config('notification-polling.retry_time') * 1000}});
     }
 
     $(document).ready( function () {
         Notification.requestPermission();
-        getNewMessages("/notifications/poll");
+        getNewNotifications("/notifications/poll");
     });
 </script>

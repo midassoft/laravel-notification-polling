@@ -28,17 +28,6 @@ class LongPollingServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(
-            __DIR__.'/config/notification-polling.php',
-            'notification-polling'
-        );
-    }
-
-    /**
-     * @return \Illuminate\Contracts\Auth\Authenticatable|null
-     */
-    public function getUsers()
-    {
-        return Auth::user();
+        $this->mergeConfigFrom(__DIR__.'/config/notification-polling.php', 'notification-polling');
     }
 }
