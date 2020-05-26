@@ -9,7 +9,7 @@ use Illuminate\Support\ServiceProvider;
 class LongPollingServiceProvider extends ServiceProvider
 {
     /**
-     *
+     * ...
      */
     public function boot()
     {
